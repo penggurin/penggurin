@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jp Roxas | Portfolio</title>
+  <meta name="description" content="Minimalist portfolio of Jp Roxas — creative developer and designer.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div id="custom-cursor"></div>
+
+  <!-- Particle canvas -->
+  <canvas id="animation-canvas"></canvas>
+
+  <!-- Profile photo -->
+  <div id="profile-container">
+    <div id="profile-pic-outer">
+      <div id="profile-pic-inner">
+        <img src="profile.jpg" alt="Jp Roxas">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text below photo -->
+  <div id="profile-text">
+    <h1 id="hero-name"><span id="type-name"></span><span class="cursor-blink">|</span></h1>
+    <p class="subtitle"><span id="type-subtitle"></span></p>
+    <div class="divider"></div>
+    <p class="bio">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;margin-top:-2px"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span id="type-bio"></span>
+    </p>
+  </div>
+
+  <!-- Nav + Footer -->
+  <div id="portfolio-content">
+    <header>
+      <span class="logo">[penggurin]</span>
+      <nav>
+        <a href="#" onclick="openPanel('about')">about</a>
+        <a href="#" onclick="openPanel('projects')">projects</a>
+        <a href="#" onclick="openPanel('contact')">contact</a>
+      </nav>
+    </header>
+    <footer>
+      <span>© 2026 Jp Roxas</span>
+      <div class="footer-links">
+        <a href="https://github.com/penggurin" target="_blank" rel="noopener noreferrer">github</a>
+        <a href="https://www.linkedin.com/in/roxas-jean-piere-r-8bb80a385/" target="_blank" rel="noopener noreferrer">linkedin</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ─── ABOUT PANEL ───────────────────────────────────────────── -->
+  <div id="panel-about" class="panel">
+    <button class="panel-close" onclick="closePanel('about')">✕</button>
+    <div class="panel-inner">
+      <p class="panel-label">01 / about</p>
+      <h2 class="panel-title">who i am.</h2>
+      <div class="panel-divider"></div>
+      <p class="panel-body">
+        I'm Jp Roxas — a front-end developer and designer based in Quezon City, Philippines.
+        Currently a 3rd year Bachelor of Science in Computer Science student at
+        Quezon City University.
+      </p>
+      <p class="panel-body">
+        I build clean, interactive digital experiences with an eye for detail and a love for
+        minimalist aesthetics — from pixel-perfect UI to smooth animations and thoughtful
+        user interactions. Open to freelance and internship opportunities.
+      </p>
+      <div class="panel-tags">
+        <span>HTML / CSS</span>
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>UI Design</span>
+        <span>Python</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PROJECTS PANEL ───────────────────────────────────────── -->
+  <div id="panel-projects" class="panel">
+    <button class="panel-close" onclick="closePanel('projects')">✕</button>
+    <div class="panel-inner">
+      <p class="panel-label">02 / projects</p>
+      <h2 class="panel-title">what i've built.</h2>
+      <div class="panel-divider"></div>
+
+      <div class="project-list">
+        <div class="project-item">
+          <div class="project-meta">
+            <span class="project-num">01</span>
+            <span class="project-tag">web</span>
+          </div>
+          <h3 class="project-name">Portfolio — penggurin</h3>
+          <p class="project-desc">This site. Particle animation system, minimalist layout, custom cursor.</p>
+          <a href="#" class="project-link">view ↗</a>
+        </div>
+
+        <div class="project-item">
+          <div class="project-meta">
+            <span class="project-num">02</span>
+            <span class="project-tag">WEB</span>
+          </div>
+          <h3 class="project-name">Piplup - To Do List Website</h3>
+          <p class="project-desc">A Pipulup-themed to-do list website that implements full CRUD operations, allowing users to create, read, update, and delete tasks with playful UI elements inspired by the franchise.</p>
+          <a  target="_blank"
+   rel="noopener noreferrer" href="https://penggurin.github.io/To-do-List-Website/" class="project-link">view ↗</a>
+        </div>
+
+        <div class="project-item">
+          <div class="project-meta">
+            <span class="project-num">03</span>
+            <span class="project-tag">WEB</span>
+          </div>
+          <h3 class="project-name">Barangay Hub</h3>
+          <p class="project-desc">BarangayHub is a web-based document request portal for barangay residents. It digitizes the process of requesting official barangay certificates, eliminating the need for residents to line up at the barangay hall.</p>
+<a  target="_blank"
+   rel="noopener noreferrer" href="https://barangayhub-qcu.vercel.app/" class="project-link">view ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CONTACT PANEL ───────────────────────────────────────── -->
+  <div id="panel-contact" class="panel">
+    <button class="panel-close" onclick="closePanel('contact')">✕</button>
+    <div class="panel-inner">
+      <p class="panel-label">03 / contact</p>
+      <h2 class="panel-title">let's talk.</h2>
+      <div class="panel-divider"></div>
+      <p class="panel-body">
+        Open to freelance projects, collaborations, or just a good conversation.
+        Reach out and I'll get back to you.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:jp@penggurin.dev" class="contact-row">
+          <span class="contact-type">email</span>
+          <span class="contact-value">penggurin@gmail.com ↗</span>
+        </a>
+        <a href="https://github.com/penggurin" target="_blank" rel="noopener noreferrer" class="contact-row">
+          <span class="contact-type">github</span>
+          <span class="contact-value">github.com/penggurin ↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/roxas-jean-piere-r-8bb80a385/" target="_blank" rel="noopener noreferrer" class="contact-row">
+          <span class="contact-type">linkedin</span>
+          <span class="contact-value">linkedin.com/in/roxas-jean-piere ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+
+    // Panel open/close
+    function openPanel(name) {
+      document.getElementById('panel-' + name).classList.add('open');
+    }
+    function closePanel(name) {
+      document.getElementById('panel-' + name).classList.remove('open');
+    }
+    // Close on backdrop click
+    document.querySelectorAll('.panel').forEach(panel => {
+      panel.addEventListener('click', e => {
+        if (e.target === panel) panel.classList.remove('open');
+      });
+    });
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape')
+        document.querySelectorAll('.panel.open').forEach(p => p.classList.remove('open'));
+    });
+
+    // ─── Typing animation ────────────────────────────────────────────────────
+    function typeInto(el, text, speed, onDone) {
+      let i = 0;
+      el.textContent = '';
+      const tick = () => {
+        if (i < text.length) {
+          el.textContent += text[i++];
+          setTimeout(tick, speed);
+        } else if (onDone) {
+          onDone();
+        }
+      };
+      tick();
+    }
+
+    // Called from app.js triggerReveal after profile text fades in
+    window.startTyping = function() {
+      const nameEl     = document.getElementById('type-name');
+      const subtitleEl = document.getElementById('type-subtitle');
+      const bioEl      = document.getElementById('type-bio');
+      const cursorEl   = document.querySelector('.cursor-blink');
+
+      typeInto(nameEl, 'Jp Roxas', 80, () => {
+        // Hide blinking cursor after name is done
+        setTimeout(() => {
+          if (cursorEl) cursorEl.style.display = 'none';
+          // Start subtitle after short pause
+          setTimeout(() => {
+            typeInto(subtitleEl, 'Front-End Developer & Designer', 40, () => {
+              // Bio last
+              setTimeout(() => {
+                typeInto(bioEl, 'Quezon City, Philippines', 40);
+              }, 200);
+            });
+          }, 300);
+        }, 400);
+      });
+    };
+  </script>
+</body>
+</html>
