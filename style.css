@@ -494,11 +494,6 @@ nav a:hover {
   transition: color 200ms ease;
   flex-shrink: 0;
 }
-
 #theme-toggle:hover {
   color: var(--text-primary);
-}
-
-#portfolio-content header {
-  gap: 1rem;
 }

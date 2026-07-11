@@ -15,7 +15,7 @@ let particles  = [];
 let textPoints = [];
 let discPoints = [];
 
-let currentPhase   = 'TEXT';
+let currentPhase   = 'SCATTER';
 let phaseStartTime = Date.now();
 
 const mouse = { x: -1000, y: -1000, radius: CONFIG.mouseRadius };
@@ -199,7 +199,11 @@ function animate() {
 
   const elapsed = Date.now() - phaseStartTime;
 
-  if (currentPhase === 'TEXT' && elapsed > CONFIG.textDuration) {
+  if (currentPhase === 'SCATTER' && elapsed > CONFIG.scatterDuration) {
+    currentPhase   = 'TEXT';
+    phaseStartTime = Date.now();
+
+  } else if (currentPhase === 'TEXT' && elapsed > CONFIG.textDuration) {
     // Build disc to match the profile pic size exactly
     discPoints = generateDiscPoints(circleRadius);
     // Grow particle pool to fill the disc completely
