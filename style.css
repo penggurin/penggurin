@@ -481,19 +481,61 @@ nav a:hover {
   font-weight: 400;
 }
 
-/* ─── Dark mode toggle button ───────────────────────────────────────────────── */
+/* ─── Dark mode toggle — fixed above profile pic ────────────────────────────── */
 #theme-toggle {
+  position: fixed;
+  top: calc(50% - 88px - 3rem);   /* above the pic: half-pic height + gap */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   background: none;
-  border: none;
-  padding: 0.25rem;
-  margin-left: 3rem; /* Moves it to the right */
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.4rem 0.7rem;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 200ms ease;
-  flex-shrink: 0;
+  gap: 0;
+  transition: color 200ms ease, border-color 200ms ease, opacity 200ms ease;
+  opacity: 0;                      /* hidden until portfolio reveals */
+  pointer-events: none;
 }
+
+#theme-toggle.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 #theme-toggle:hover {
   color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+@media (min-width: 768px) {
+  #theme-toggle {
+    top: calc(50% - 112px - 3rem);
+  }
+}
+
+/* ─── Mobile — tighter nav ──────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .logo { font-size: 0.8rem; }
+  nav { gap: 1rem; }
+  nav a { font-size: 0.75rem; }
+  #portfolio-content { padding: 1.2rem; }
+  #portfolio-content footer { font-size: 0.65rem; }
+
+  /* Panels scroll on small screens */
+  .panel { align-items: flex-start; overflow-y: auto; padding-top: 4rem; }
+  .panel-inner { padding: 1rem 0; }
+  .panel-title { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+  .panel-body { font-size: 0.82rem; }
+
+  /* Profile text tighter */
+  #profile-text { top: calc(50% + 88px + 1rem); }
+  #hero-name { font-size: 1rem; }
+  .subtitle { font-size: 0.6rem; letter-spacing: 0.12em; }
+  .divider { margin: 0.75rem auto; }
+  .bio { font-size: 0.78rem; }
 }

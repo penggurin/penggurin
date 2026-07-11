@@ -42,7 +42,17 @@ function generateTextPoints() {
   oCtx.font = '700 80px "Space Mono", monospace';
   oCtx.textAlign = 'center';
   oCtx.textBaseline = 'middle';
-  oCtx.fillText('[penggurin]', vw / 2, vh / 2);
+
+  // Draw with manual letter-spacing by rendering char by char
+  const text    = '[penggurin]';
+  const spacing = 6; // extra px between each character
+  const totalW  = oCtx.measureText(text).width + spacing * (text.length - 1);
+  let x = vw / 2 - totalW / 2;
+  for (const ch of text) {
+    const chW = oCtx.measureText(ch).width;
+    oCtx.fillText(ch, x + chW / 2, vh / 2);
+    x += chW + spacing;
+  }
 
   const img  = oCtx.getImageData(0, 0, vw, vh);
   const pts  = [];
@@ -69,7 +79,7 @@ function generateDiscPoints(radius) {
 class Particle {
   constructor(index) {
     this.index = index;
-    this.size  = 1.6;
+    this.size  = window.innerWidth < 480 ? 0.7 : 1.2;
     this.resetToRandom();
   }
 
@@ -178,6 +188,9 @@ function triggerReveal() {
       portfolio.style.opacity       = '1';
       portfolio.style.pointerEvents = 'auto';
     }
+    // Show theme toggle
+    const tog = document.getElementById('theme-toggle');
+    if (tog) tog.classList.add('visible');
   }, 1200);
 }
 
