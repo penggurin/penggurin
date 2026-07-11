@@ -1,7 +1,7 @@
 const CONFIG = {
   particleCount:   1200,
   scatterDuration: 1800,
-  textDuration:    3200,
+  textDuration:    4000,
   circleDuration:  2000,
   mouseRadius:     100,
   repulsionForce:  6,
@@ -15,7 +15,7 @@ let particles  = [];
 let textPoints = [];
 let discPoints = [];
 
-let currentPhase   = 'SCATTER';
+let currentPhase   = 'TEXT';
 let phaseStartTime = Date.now();
 
 const mouse = { x: -1000, y: -1000, radius: CONFIG.mouseRadius };
@@ -113,8 +113,8 @@ class Particle {
     const mDist = Math.hypot(mdx, mdy);
     const under = mDist < mouse.radius;
 
-    const spring   = under ? 0.025 : 0.038;
-    const friction = under ? 0.88  : 0.80;
+    const spring   = under ? 0.025 : 0.022;
+    const friction = under ? 0.88  : 0.84;
 
     this.vx += (this.targetX - this.x) * spring;
     this.vy += (this.targetY - this.y) * spring;
@@ -136,11 +136,12 @@ class Particle {
   }
 
   draw(alpha) {
+    const isDark = document.documentElement.dataset.theme === 'dark';
     ctx.globalAlpha = alpha;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fillStyle = '#111';
+    ctx.fillStyle = isDark ? '#f0f0f0' : '#111';
     ctx.fill();
     ctx.globalAlpha = 1;
   }
@@ -185,7 +186,8 @@ function animate() {
   ctx.clearRect(0, 0, width, height);
 
   if (currentPhase === 'TEXT') {
-    ctx.fillStyle = 'rgba(245,245,245,1)';
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    ctx.fillStyle = isDark ? 'rgba(15,15,15,1)' : 'rgba(245,245,245,1)';
     ctx.fillRect(0, 0, width, height);
   }
 
@@ -197,11 +199,7 @@ function animate() {
 
   const elapsed = Date.now() - phaseStartTime;
 
-  if (currentPhase === 'SCATTER' && elapsed > CONFIG.scatterDuration) {
-    currentPhase   = 'TEXT';
-    phaseStartTime = Date.now();
-
-  } else if (currentPhase === 'TEXT' && elapsed > CONFIG.textDuration) {
+  if (currentPhase === 'TEXT' && elapsed > CONFIG.textDuration) {
     // Build disc to match the profile pic size exactly
     discPoints = generateDiscPoints(circleRadius);
     // Grow particle pool to fill the disc completely

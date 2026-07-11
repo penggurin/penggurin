@@ -1,3 +1,31 @@
+/* ─── Theme tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg:            #f5f5f5;
+  --text-primary:  #111;
+  --text-body:     #1e1e1e;
+  --text-secondary:#64748b;
+  --text-secondary2:#475569;
+  --text-muted:    #94a3b8;
+  --border:        #e2e8f0;
+  --border-strong: #cbd5e1;
+  --panel-bg:      rgba(245, 245, 245, 0.97);
+  --cursor-color:  #111;
+  --transition-theme: background 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+[data-theme="dark"] {
+  --bg:            #0f0f0f;
+  --text-primary:  #f0f0f0;
+  --text-body:     #e0e0e0;
+  --text-secondary:#94a3b8;
+  --text-secondary2:#8896a8;
+  --text-muted:    #475569;
+  --border:        #2a2a2a;
+  --border-strong: #333;
+  --panel-bg:      rgba(15, 15, 15, 0.97);
+  --cursor-color:  #f0f0f0;
+}
+
 /* ─── Reset & base ─────────────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -11,8 +39,9 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: 'Outfit', sans-serif;
-  background: #f5f5f5;
-  color: #1e1e1e;
+  background: var(--bg);
+  color: var(--text-body);
+  transition: var(--transition-theme);
 }
 
 /* ─── Custom cursor ─────────────────────────────────────────────────────────── */
@@ -20,7 +49,7 @@ html, body {
   position: fixed;
   width: 10px;
   height: 10px;
-  background: #111;
+  background: var(--cursor-color);
   border-radius: 50%;
   z-index: 999999;
   pointer-events: none;
@@ -122,14 +151,14 @@ html, body {
 #hero-name {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #111;
+  color: var(--text-primary);
   letter-spacing: 0.01em;
 }
 
 /* Blinking cursor after name */
 .cursor-blink {
   display: inline-block;
-  color: #111;
+  color: var(--text-primary);
   font-weight: 300;
   margin-left: 1px;
   animation: blink 0.8s step-end infinite;
@@ -143,7 +172,7 @@ html, body {
 .subtitle {
   font-size: 0.7rem;
   font-family: 'Space Mono', monospace;
-  color: #64748b;
+  color: var(--text-secondary);
   margin-top: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -152,12 +181,12 @@ html, body {
 .divider {
   width: 2.5rem;
   height: 1px;
-  background: #cbd5e1;
+  background: var(--border-strong);
   margin: 1rem auto;
 }
 
 .bio {
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -198,7 +227,7 @@ html, body {
   font-weight: 600;
   letter-spacing: 0.1em;
   font-family: 'Space Mono', monospace;
-  color: #111;
+  color: var(--text-primary);
   user-select: none;
 }
 
@@ -210,7 +239,7 @@ nav {
 nav a {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-secondary);
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: color 300ms ease;
@@ -218,7 +247,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #111;
+  color: var(--text-primary);
 }
 
 #portfolio-content footer {
@@ -227,7 +256,7 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-family: 'Space Mono', monospace;
 }
 
@@ -237,14 +266,14 @@ nav a:hover {
 }
 
 .footer-links a {
-  color: #94a3b8;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 300ms ease;
   pointer-events: auto;
 }
 
 .footer-links a:hover {
-  color: #111;
+  color: var(--text-primary);
 }
 
 /* ─── Panels (about / projects / contact) ──────────────────────────────────── */
@@ -252,7 +281,7 @@ nav a:hover {
   position: fixed;
   inset: 0;
   z-index: 50000;
-  background: rgba(245, 245, 245, 0.97);
+  background: var(--panel-bg);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -274,7 +303,7 @@ nav a:hover {
   background: none;
   border: none;
   font-size: 1.1rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   cursor: none;
   transition: color 200ms ease;
   font-family: 'Space Mono', monospace;
@@ -282,7 +311,7 @@ nav a:hover {
 }
 
 .panel-close:hover {
-  color: #111;
+  color: var(--text-primary);
 }
 
 .panel-inner {
@@ -296,14 +325,14 @@ nav a:hover {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
 .panel-title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: #111;
+  color: var(--text-primary);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -311,13 +340,13 @@ nav a:hover {
 .panel-divider {
   width: 2.5rem;
   height: 2px;
-  background: #111;
+  background: var(--text-primary);
   margin: 1.5rem 0;
 }
 
 .panel-body {
   font-size: 0.9rem;
-  color: #475569;
+  color: var(--text-secondary2);
   font-weight: 300;
   line-height: 1.8;
   margin-bottom: 1rem;
@@ -335,8 +364,8 @@ nav a:hover {
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #64748b;
-  border: 1px solid #cbd5e1;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
   padding: 0.3rem 0.7rem;
   border-radius: 2px;
 }
@@ -350,11 +379,11 @@ nav a:hover {
 
 .project-item {
   padding: 1.25rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
 }
 
 .project-item:first-child {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border);
 }
 
 .project-meta {
@@ -367,7 +396,7 @@ nav a:hover {
 .project-num {
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .project-tag {
@@ -375,8 +404,8 @@ nav a:hover {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #94a3b8;
-  border: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 0.1rem 0.4rem;
   border-radius: 2px;
 }
@@ -384,13 +413,13 @@ nav a:hover {
 .project-name {
   font-size: 1rem;
   font-weight: 500;
-  color: #111;
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .project-desc {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 300;
   margin-bottom: 0.5rem;
 }
@@ -398,7 +427,7 @@ nav a:hover {
 .project-link {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
-  color: #111;
+  color: var(--text-primary);
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: opacity 200ms ease;
@@ -425,13 +454,13 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
   text-decoration: none;
   transition: opacity 200ms ease;
 }
 
 .contact-row:first-child {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border);
 }
 
 .contact-row:hover {
@@ -443,11 +472,33 @@ nav a:hover {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .contact-value {
   font-size: 0.85rem;
-  color: #111;
+  color: var(--text-primary);
   font-weight: 400;
+}
+
+/* ─── Dark mode toggle button ───────────────────────────────────────────────── */
+#theme-toggle {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  margin-left: 3rem; /* Moves it to the right */
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 200ms ease;
+  flex-shrink: 0;
+}
+
+#theme-toggle:hover {
+  color: var(--text-primary);
+}
+
+#portfolio-content header {
+  gap: 1rem;
 }
